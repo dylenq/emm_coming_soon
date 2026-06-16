@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Journal - Every Mind Matters</title>
+    <meta name="description" content="Articles, insights, and resources on mental health, wellbeing, and personal growth from the Every Mind Matters team." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin />
+        <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="css/styles.min.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+      media="print"
+      onload="this.media='all'"
+    />
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" /></noscript>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      .journal-content {
+        padding: var(--space-3xl) 0;
+        background: var(--background-primary);
+      }
+      
+      .journal-section {
+        margin-bottom: var(--space-3xl);
+        max-width: 900px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      
+      .journal-section h2 {
+        color: var(--text-primary);
+        font-size: clamp(1.75rem, 4vw, 2.25rem);
+        margin-bottom: var(--space-lg);
+        border-bottom: 2px solid var(--border-color);
+        padding-bottom: var(--space-md);
+      }
+      
+      .journal-section h3 {
+        color: var(--text-primary);
+        font-size: clamp(1.25rem, 3vw, 1.5rem);
+        margin-top: var(--space-xl);
+        margin-bottom: var(--space-md);
+      }
+      
+      .journal-section p {
+        color: var(--text-secondary);
+        line-height: 1.8;
+        margin-bottom: var(--space-lg);
+      }
+      
+      .journal-section ul,
+      .journal-section ol {
+        color: var(--text-secondary);
+        line-height: 1.8;
+        margin-bottom: var(--space-lg);
+        padding-left: var(--space-2xl);
+      }
+      
+      .journal-section li {
+        margin-bottom: var(--space-sm);
+        color: var(--text-secondary);
+      }
+      
+      .journal-section strong {
+        color: var(--text-primary);
+        font-weight: 600;
+      }
+      
+      .theme-list {
+        list-style: none;
+        padding-left: 0;
+      }
+      
+      .theme-list li::before {
+        content: "⇒ ";
+        color: var(--text-primary);
+        font-weight: 600;
+        margin-right: var(--space-sm);
+      }
+      
+      .contact-info {
+        background: var(--background-secondary);
+        padding: var(--space-xl);
+        border-radius: var(--radius-xl);
+        border: 1px solid var(--border-color);
+        margin-top: var(--space-xl);
+      }
+      
+      .contact-info p {
+        margin-bottom: var(--space-sm);
+        display: flex;
+        align-items: center;
+        gap: var(--space-sm);
+      }
+      
+      .contact-info i {
+        color: var(--text-primary);
+        width: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav class="navbar">
+      <div class="nav-container">
+        <div class="nav-logo">
+          <a href="index.html">
+            <h2>Every Mind Matters</h2>
+          </a>
+        </div>
+        <div class="nav-menu" id="nav-menu">
+          <a href="index.html" class="nav-link">Home</a>
+          <a href="about.html" class="nav-link">About</a>
+          <a href="professionals.html" class="nav-link">Professionals</a>
+          <div class="nav-dropdown">
+            <a href="services.html" class="nav-link dropdown-toggle" aria-haspopup="menu" aria-expanded="false">
+              Services <i class="fas fa-chevron-down" aria-hidden="true"></i>
+            </a>
+            <div class="dropdown-menu">
+              <a href="service-counselling.html" class="dropdown-item">
+                <i class="fas fa-comments" aria-hidden="true"></i>
+                <span>Counselling &amp; Psychotherapy</span>
+              </a>
+              <a href="service-energy-healing.html" class="dropdown-item">
+                <i class="fas fa-hands" aria-hidden="true"></i>
+                <span>Energy Healing</span>
+              </a>
+              <a href="service-life-coaching.html" class="dropdown-item">
+                <i class="fas fa-rocket" aria-hidden="true"></i>
+                <span>Life Coaching &amp; NLP</span>
+              </a>
+              <a href="service-mindfulness.html" class="dropdown-item">
+                <i class="fas fa-om" aria-hidden="true"></i>
+                <span>Mindfulness &amp; Meditation</span>
+              </a>
+              <a href="service-yoga.html" class="dropdown-item">
+                <i class="fas fa-praying-hands" aria-hidden="true"></i>
+                <span>Yoga &amp; Pilates</span>
+              </a>
+              <a href="service-fitness.html" class="dropdown-item">
+                <i class="fas fa-dumbbell" aria-hidden="true"></i>
+                <span>Fitness &amp; Nutrition</span>
+              </a>
+              <a href="service-assessments.html" class="dropdown-item">
+                <i class="fas fa-clipboard-check" aria-hidden="true"></i>
+                <span>Psychological Screenings &amp; Assessments</span>
+              </a>
+              <a href="service-financial.html" class="dropdown-item">
+                <i class="fas fa-coins" aria-hidden="true"></i>
+                <span>Financial Wellbeing</span>
+              </a>
+              <a href="services.html#buddhist" class="dropdown-item">
+                <i class="fas fa-dharmachakra" aria-hidden="true"></i>
+                <span>Buddhist Based Counseling</span>
+              </a>
+              <a href="service-social.html" class="dropdown-item">
+                <i class="fas fa-users" aria-hidden="true"></i>
+                <span>Social Wellbeing</span>
+              </a>
+            </div>
+          </div>
+          <a href="corporates.html" class="nav-link">Corporates</a>
+          <a href="journal.html" class="nav-link active">Journal</a>
+          <a href="products.html" class="nav-link">Wellness Products</a>
+          <a href="contact.html" class="nav-link">Contact</a>
+        </div>
+        <button type="button" class="nav-toggle" id="mobile-menu" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="nav-menu">
+          <span class="bar" aria-hidden="true"></span>
+          <span class="bar" aria-hidden="true"></span>
+          <span class="bar" aria-hidden="true"></span>
+        </button>
+      </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+      <div class="container">
+        <div class="page-header-content">
+          <span class="page-badge">The Journal</span>
+          <h1>The Journal of Mental Health and Wellbeing</h1>
+          <p>
+            A peer-reviewed, interdisciplinary publication dedicated to advancing knowledge and practice in mental health and wellbeing.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Journal Content -->
+    <section class="journal-content">
+      <div class="container">
+        <div class="journal-section">
+          <h2>About the Journal</h2>
+          <p>
+            The Journal of Mental Health and Wellbeing is a peer-reviewed, interdisciplinary publication dedicated to advancing knowledge and practice in the fields of psychology, mental health, mindfulness, and Buddhist contemplative studies. The journal provides a platform for scholars, practitioners, and students to explore the intersections between scientific research, therapeutic application, and contemplative wisdom, fostering a deeper understanding of human mind and behavior.
+          </p>
+          <p>
+            Guided by the vision of promoting holistic mental wellbeing, the Journal encourages contributions that integrate academic rigor with cultural and ethical sensitivity, emphasizing approaches that are both evidence-based and human-centered. It aims to bridge the gap between traditional psychological frameworks and emerging contemplative paradigms, cultivating dialogue across disciplines and worldviews.
+          </p>
+          <p>
+          </p>
+        </div>
+
+        <div class="journal-section" style="text-align: center;">
+          <h2 style="border-bottom: none; padding-bottom: 0;">Submission Instructions</h2>
+          <p>
+            Themes, accepted submission types, formatting requirements, key
+            dates, and the full Author Guidelines are detailed on the
+            instructions page.
+          </p>
+          <a href="journal-instructions.html" class="btn btn-primary btn-large">
+            <i class="fas fa-book-open" aria-hidden="true"></i>
+            View Submission Instructions
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-main">
+            <div class="footer-brand">
+              <h3>Every Mind Matters</h3>
+              <p>
+                Comprehensive mental health and wellness services for a better
+                tomorrow. Your journey to balance starts here.
+              </p>
+              <div class="footer-social">
+                <a href="#" class="social-link" aria-label="Instagram"><i class="fab fa-instagram" aria-hidden="true"></i></a>
+                <a href="#" class="social-link" aria-label="Facebook"><i class="fab fa-facebook" aria-hidden="true"></i></a>
+                <a href="#" class="social-link" aria-label="LinkedIn"><i class="fab fa-linkedin" aria-hidden="true"></i></a>
+                <a href="#" class="social-link" aria-label="YouTube"><i class="fab fa-youtube" aria-hidden="true"></i></a>
+              </div>
+            </div>
+            <div class="footer-links">
+              <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul>
+                  <li><a href="index.html">Home</a></li>
+                  <li><a href="about.html">About Us</a></li>
+                  <li><a href="services.html">Services</a></li>
+                  <li><a href="professionals.html">Our Team</a></li>
+                  <li><a href="contact.html">Contact</a></li>
+                </ul>
+              </div>
+              <div class="footer-section">
+                <h4>Services</h4>
+                <ul>
+                  <li><a href="service-counselling.html">Counselling &amp; Psychotherapy</a></li>
+                  <li><a href="service-energy-healing.html">Energy Healing</a></li>
+                  <li><a href="service-life-coaching.html">Life Coaching</a></li>
+                  <li><a href="service-mindfulness.html">Mindfulness &amp; Meditation</a></li>
+                  <li><a href="service-assessments.html">Assessments</a></li>
+                </ul>
+              </div>
+              <div class="footer-section">
+                <h4>Resources</h4>
+                <ul>
+                  <li><a href="journal.html">Journal</a></li>
+                  <li><a href="faq.html">FAQ</a></li>
+                  <li><a href="products.html">Wellness Products</a></li>
+                  <li><a href="gallery.html">Gallery</a></li>
+                  <li><a href="careers.html">Careers</a></li>
+                </ul>
+              </div>
+              <div class="footer-section">
+                <h4>Contact Info</h4>
+                <div class="footer-contact">
+                  <p><i class="fas fa-phone" aria-hidden="true"></i> +94 71 617 3006</p>
+                  <p><i class="fas fa-envelope" aria-hidden="true"></i> dylenquyn@gmail.com</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <div class="footer-bottom-content">
+            <p>&copy; 2024 Every Mind Matters. All rights reserved.</p>
+            <div class="footer-legal">
+              <a href="privacy.html">Privacy Policy</a>
+              <a href="terms.html">Terms of Service</a>
+              <a href="cookies.html">Cookie Policy</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script src="js/script.min.js"></script>
+  </body>
+</html>
+
+
