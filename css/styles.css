@@ -957,7 +957,7 @@ img {
   background: var(--background-secondary);
   color: var(--text-primary);
   border-radius: 150px;
-  font-size: clamp(01rem, 2vw, 01.2rem);
+  font-size: clamp(1rem, 2vw, 1.2rem);
   font-weight: 600;
   margin-bottom: var(--space-lg);
   border: 1px solid var(--border-color);
@@ -2382,6 +2382,7 @@ textarea:focus {
 .service-packages,
 .service-image-section,
 .professionals-section,
+.team-stats,
 .corporate-intro,
 .corporate-services,
 .privacy-content,
@@ -2393,8 +2394,7 @@ textarea:focus {
 .careers-content,
 .contact-content,
 .assessments-content,
-.journal-content,
-.careers-content {
+.journal-content {
   padding-top: var(--section-y);
   padding-bottom: var(--section-y);
 }
@@ -2511,8 +2511,6 @@ textarea:focus {
   to   { transform: translateX(-50%); }
 }
 
-/* Service Description */
-
 /* ── Corporate services: 4 columns, 1 row ── */
 .corporate-services .professionals-grid {
   grid-template-columns: repeat(4, 1fr);
@@ -2561,4 +2559,39 @@ textarea:focus {
 
 .professional-card:hover .corporate-service-icon {
   transform: scale(1.1);
+}
+
+/* ── Corporate intro content ── */
+.intro-content {
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-lg);
+}
+
+.intro-content h2 {
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.intro-content p {
+  font-size: clamp(1rem, 2vw, 1.15rem);
+  color: var(--text-secondary);
+  line-height: 1.8;
+  margin: 0;
+}
+
+/* ── Utility pages (faq, careers, gallery, products, etc.) ── */
+.faq-content .container,
+.careers-content .container,
+.gallery-content .container,
+.products-content .container,
+.assessments-content .container,
+.journal-content .container,
+.contact-content .container {
+  max-width: var(--container-lg);
 }
