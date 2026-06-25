@@ -2475,6 +2475,16 @@ textarea:focus {
   overflow: hidden;
 }
 
+.partners-ribbon-label {
+  text-align: center;
+  font-size: clamp(0.7rem, 1.2vw, 0.8rem);
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin: 0 0 var(--space-md);
+}
+
 .partners-ribbon-inner {
   overflow: hidden;
   width: 100%;
