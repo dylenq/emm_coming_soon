@@ -521,33 +521,47 @@ function clearAllFieldErrors() {
 }
 
 // Form Submission Handlers
-function handleContactFormSubmit(e) {
+async function handleContactFormSubmit(e) {
   e.preventDefault()
 
-  const formData = new FormData(e.target)
-  const data = Object.fromEntries(formData)
+  const form = e.target
+  const errorEl = document.getElementById("contact-error")
+  if (errorEl) errorEl.textContent = ""
+  const data = Object.fromEntries(new FormData(form))
+
+  // Same API base detection as js/booking.js
+  const local = ["localhost", "127.0.0.1"].includes(location.hostname)
+  const api = local
+    ? "http://localhost:8092"
+    : (document.querySelector('meta[name="emm-api-base"]')?.content.replace(/\/$/, "") ?? "")
 
   // Show loading state
-  const submitBtn = e.target.querySelector('button[type="submit"]')
+  const submitBtn = form.querySelector('button[type="submit"]')
   const originalText = submitBtn.innerHTML
   submitBtn.innerHTML = '<span class="loading"></span> Sending Message...'
   submitBtn.disabled = true
 
-  // Simulate form submission
-  setTimeout(() => {
-    // Reset button
+  try {
+    const r = await fetch(api + "/api/contact", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data),
+    })
+    const body = await r.json().catch(() => ({}))
+    if (!r.ok) throw new Error(body.error || "")
+
+    showSuccessMessage(form, "Thank you for your message! We'll get back to you within 24 hours.")
+    form.reset()
+    trackEvent("Form", "Submit", "Contact Form")
+  } catch (err) {
+    // Network failures throw TypeError ("Failed to fetch"); only show messages from the server
+    const msg = (err.name === "Error" && err.message) || "Could not send your message. Please email or call us instead."
+    if (errorEl) errorEl.textContent = msg
+    else alert(msg)
+  } finally {
     submitBtn.innerHTML = originalText
     submitBtn.disabled = false
-
-    // Show success message
-    showSuccessMessage(e.target, "Thank you for your message! We'll get back to you within 24 hours.")
-
-    // Reset form
-    e.target.reset()
-
-    // Track analytics
-    trackEvent("Form", "Submit", "Contact Form")
-  }, 2000)
+  }
 }
 
 function handleBookingFormSubmit(e) {

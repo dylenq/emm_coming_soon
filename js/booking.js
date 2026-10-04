@@ -67,6 +67,9 @@
     $("bk-type").focus()
   }
 
+  // Returning from PayHere via Back restores the page from cache with the button still disabled
+  window.addEventListener("pageshow", (e) => { if (e.persisted) $("bk-submit").disabled = false })
+
   $("bk-type").addEventListener("change", () => { showPrice(); loadSlots() })
   $("bk-date").addEventListener("change", loadSlots)
 

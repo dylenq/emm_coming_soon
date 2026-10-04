@@ -15,6 +15,7 @@
         const when = new Date(b.start).toLocaleString("en-GB", { timeZone: "Asia/Colombo", dateStyle: "full", timeStyle: "short" })
         return show("Booking confirmed", `Your session is booked for ${when} (Sri Lanka time). A confirmation email is on its way.`)
       }
+      if (b.status === "conflict") return show("Time no longer available", "That time was taken while your payment was processing. We'll contact you to rebook or refund.")
       if (b.status === "failed") return show("Payment failed", "Your payment did not go through. Please try booking again.")
     } catch {}
     if (++tries < 20) setTimeout(poll, 3000)

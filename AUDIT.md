@@ -59,17 +59,29 @@ Scope: code quality, performance, accessibility & mobile. Originally audited 24 
 - **Re-minified** styles.min.css (39.0 KB) and script.min.js.
 - **Verified**: 0 broken links/anchors, 1 nav variant, 1 footer variant, OG tags exactly once per page, no undefined CSS variables, all 25 pages parse.
 
+### Round 5 — October 2026 completion pass ✓ APPLIED
+- **Contact form now actually sends.** It used to fake a 2-second "submit" and drop the message. It now POSTs to the booking API's new `POST /api/contact`, which emails `CONTACT_TO` (reply-to = the visitor) using the existing SMTP config. Includes validation, length caps, a honeypot field, and a per-IP rate limit (5 per 10 minutes). The visitor sees a clear error if sending fails; the message is never silently lost. **Set `SMTP_URL`, `MAIL_FROM` and `CONTACT_TO` in `booking-api/.env` before going live.**
+- **Late-payment double-booking fixed.** If a PayHere payment arrives after its 10-minute hold lapsed and someone else has since booked the slot, the booking becomes `conflict` instead of `paid`: no calendar event is created, an error is logged for a manual refund or rebook, and the status page tells the client. The claim and the check run in one transaction.
+- **Invalid booking time** now returns 400 instead of a 500.
+- **"Continue to payment" stays usable** after returning from PayHere with the Back button.
+- **Secrets removed from `booking-api/.env.example`.** The PayHere merchant ID and secret were committed; they are now blank. Rotate the sandbox secret if it is shared anywhere.
+- **API Docker image:** uses `npm ci` with the lockfile; new `booking-api/.dockerignore` keeps the host `node_modules`, `.env`, the Google key and the database out of the image.
+- Optional `TRUST_PROXY` env var so rate limiting sees real client IPs behind a reverse proxy.
+- Tests: 8/8 passing (`cd booking-api && npm test`). Re-minified `styles.min.css` and `script.min.js`.
+
 ---
 
 ## STILL OPEN — your decisions
 
+### 0. Real booking data
+`booking-api/catalog.json` still has placeholder prices, hours, and `REPLACE@group.calendar.google.com` calendar IDs for four of the five professionals. Booking those professionals will fail until real calendar IDs are filled in and shared with the service account.
+
+
 ### 1. Production domain needed for final SEO polish
 `sitemap.xml`, `og:url`, `og:image`, and `<link rel="canonical">` all require the site's public URL. Once the domain is settled, these are a quick one-pass addition.
 
-### 2. Nine stub "Content Coming Soon" pages
-`privacy`, `terms`, `cookies`, `faq`, `gallery`, `products`, `careers`, `assessments`, and `contact` all show a `content-placeholder` block. Pick a path:
-- **Option A**: write real content for each (privacy policy, terms, FAQ, careers, etc.). I can draft starter content on request, but legal pages (privacy/terms/cookies) really should be reviewed by counsel.
-- **Option B**: temporarily hide them from the nav/footer until ready. I can do this in one pass by editing `_partials/nav.html` and `_partials/footer.html`, then re-running `python3 _partials/sync.py`.
+### 2. Remaining placeholder content
+All former stub pages now have real content. What's left: the "More Photos Coming Soon" block on `gallery.html`, and the empty "Our Journey" image slot on `about.html` (TODO comment in place). Both need real photos.
 
 ### 3. P2 / nice-to-have items left for later
 - Team photo re-export at lower file size or WebP (currently 60–96 KB each — modest win).

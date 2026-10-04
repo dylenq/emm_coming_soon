@@ -6,7 +6,8 @@ import { openDb } from './db.js';
 import { computeSlots, toIso } from './slots.js';
 import { freeBusy, createEvent } from './calendar.js';
 import { checkoutHash, checkoutUrl, fmtAmount, verifyNotify } from './payhere.js';
-import { sendConfirmation } from './mailer.js';
+import { sendConfirmation, sendContact } from './mailer.js';
+import { validateContact, rateLimiter, EMAIL_RE } from './contact.js';
 
 const catalog = JSON.parse(readFileSync(new URL('./catalog.json', import.meta.url))).professionals;
 const env = process.env;
@@ -15,6 +16,8 @@ const HOLD_MS = 10 * 60e3;
 const sandbox = env.PAYHERE_SANDBOX !== 'false';
 
 const app = express();
+// Set TRUST_PROXY to the number of reverse proxies in front of the API so req.ip is the real client.
+if (env.TRUST_PROXY) app.set('trust proxy', Number(env.TRUST_PROXY) || env.TRUST_PROXY);
 app.use(cors({ origin: env.SITE_ORIGIN }));
 app.use(express.json({ limit: '10kb' }));
 app.use('/api/payhere/notify', express.urlencoded({ extended: false }));
@@ -51,11 +54,13 @@ app.get('/api/slots', async (req, res) => {
 app.post('/api/bookings', async (req, res) => {
   try {
     const { pro: proId, type: typeId, start, name, email, phone, notes } = req.body ?? {};
-    if (!name || !/^\S+@\S+\.\S+$/.test(email ?? '') || !phone || !start) return res.status(400).json({ error: 'Missing details' });
-    const date = new Date(start).toLocaleDateString('en-CA', { timeZone: 'Asia/Colombo' });
+    if (!name || !EMAIL_RE.test(email ?? '') || !phone || !start) return res.status(400).json({ error: 'Missing details' });
+    const startDate = new Date(start);
+    if (isNaN(startDate)) return res.status(400).json({ error: 'Invalid time' });
+    const startIso = startDate.toISOString();
+    const date = startDate.toLocaleDateString('en-CA', { timeZone: 'Asia/Colombo' });
     const r = await openSlots(proId, typeId, date);
-    if (!r || !r.slots.includes(new Date(start).toISOString())) return res.status(409).json({ error: 'That time is no longer available' });
-    const startIso = new Date(start).toISOString();
+    if (!r || !r.slots.includes(startIso)) return res.status(409).json({ error: 'That time is no longer available' });
     const endIso = new Date(new Date(startIso).getTime() + r.type.minutes * 60e3).toISOString();
     const id = crypto.randomUUID();
     // re-check inside a transaction so two clients cannot grab the same slot
@@ -97,10 +102,21 @@ app.post('/api/payhere/notify', async (req, res) => {
     if (bk.status === 'pending' && Number(b.status_code) < 0) db.prepare(`UPDATE bookings SET status='failed' WHERE id=?`).run(bk.id);
     return res.sendStatus(200);
   }
-  // idempotent: only the first successful callback creates the event
-  const claimed = db.prepare(`UPDATE bookings SET status='paid' WHERE id=? AND status IN ('pending','expired')`).run(bk.id).changes;
+  // Claim the booking in one transaction (idempotent: only the first successful callback creates the
+  // event). If the hold lapsed and someone else took the slot before this payment landed, flag it.
+  let outcome;
+  db.exec('BEGIN IMMEDIATE');
+  try {
+    const clash = db.prepare(`SELECT id FROM bookings WHERE pro=? AND id<>? AND start < ? AND end > ? AND (status='paid' OR (status='pending' AND hold_expires >= ?))`)
+      .get(bk.pro, bk.id, bk.end, bk.start, Date.now());
+    outcome = clash ? 'conflict' : 'paid';
+    const claimed = db.prepare(`UPDATE bookings SET status=? WHERE id=? AND status IN ('pending','expired')`).run(outcome, bk.id).changes;
+    db.exec('COMMIT');
+    if (!claimed) outcome = null;
+    else if (clash) console.error(`PAID BOOKING CONFLICT: ${bk.id} (${bk.email}) paid after its hold lapsed; slot taken by ${clash.id}. Rebook or refund manually.`);
+  } catch (e) { db.exec('ROLLBACK'); console.error(e); return res.sendStatus(500); }
   res.sendStatus(200);
-  if (!claimed) return;
+  if (outcome !== 'paid') return;
   try {
     const pro = catalog[bk.pro], type = pro.sessions[bk.type];
     const ev = await createEvent({
@@ -111,6 +127,18 @@ app.post('/api/payhere/notify', async (req, res) => {
     db.prepare('UPDATE bookings SET event_id=?, meet_link=? WHERE id=?').run(ev.eventId, ev.meetLink, bk.id);
     await sendConfirmation({ to: bk.email, name: bk.name, proName: pro.name, label: type.label, startIso: bk.start, meetLink: ev.meetLink });
   } catch (e) { console.error('post-payment step failed for', bk.id, e); }
+});
+
+const contactLimit = rateLimiter({ max: 5, windowMs: 10 * 60e3 });
+app.post('/api/contact', async (req, res) => {
+  if (req.body?.website) return res.json({ ok: true }); // honeypot: bots fill hidden fields
+  const { error, value } = validateContact(req.body);
+  if (error) return res.status(400).json({ error });
+  if (!contactLimit(req.ip)) return res.status(429).json({ error: 'Too many messages. Please try again later or contact us directly.' });
+  try {
+    await sendContact(value);
+    res.json({ ok: true });
+  } catch (e) { console.error('contact email failed', e); res.status(502).json({ error: 'Could not send your message. Please email or call us instead.' }); }
 });
 
 app.get('/api/bookings/:id', (req, res) => {

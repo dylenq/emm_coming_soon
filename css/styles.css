@@ -2518,6 +2518,21 @@ textarea:focus {
   white-space: nowrap;
   border: 0;
 }
+/* Form error text and spam honeypot (hidden from everyone, including screen readers) */
+.form-error {
+  color: #b3261e;
+  min-height: 1.2em;
+  margin: 0.25rem 0 0.75rem;
+}
+
+.hp-field {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
 /* Service Image Section */
 .service-image-section {
   padding: var(--space-3xl) 0;
