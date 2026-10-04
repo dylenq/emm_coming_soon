@@ -1,0 +1,7 @@
+.git
+.vscode
+.DS_Store
+_backup_pre_optimization
+graphify-out
+node_modules
+booking-api/

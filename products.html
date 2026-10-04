@@ -5,10 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Wellness Products - Every Mind Matters</title>
     <meta name="description" content="Wellness products and resources curated by the Every Mind Matters team to support your mental health journey." />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <meta name="theme-color" content="#ec4899" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Every Mind Matters" />
+    <meta property="og:title" content="Wellness Products - Every Mind Matters" />
+    <meta property="og:description" content="Wellness products and resources curated by the Every Mind Matters team to support your mental health journey." />
+    <meta name="twitter:card" content="summary" />
     <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin />
-        <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
     <link rel="stylesheet" href="css/styles.min.css" />
     <link
       rel="stylesheet"
@@ -17,12 +21,9 @@
       onload="this.media='all'"
     />
     <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" /></noscript>
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
   </head>
   <body>
+    <a class="skip-link" href="#main-content">Skip to main content</a>
     <!-- Navigation -->
     <nav class="navbar">
       <div class="nav-container">
@@ -83,7 +84,7 @@
             </div>
           </div>
           <a href="corporates.html" class="nav-link">Corporates</a>
-          <a href="journal.html" class="nav-link">Journal</a>
+          <a href="blog.html" class="nav-link">Blog</a>
           <a href="products.html" class="nav-link active">Wellness Products</a>
           <a href="contact.html" class="nav-link">Contact</a>
         </div>
@@ -96,7 +97,7 @@
     </nav>
 
     <!-- Page Header -->
-    <section class="page-header">
+    <section id="main-content" class="page-header">
       <div class="container">
         <div class="page-header-content">
           <span class="page-badge">Wellness Products</span>
@@ -109,16 +110,71 @@
       </div>
     </section>
 
-    <!-- Products Content - Add your content here -->
+    <!-- Products Content -->
     <section class="products-content">
       <div class="container">
-        <!-- Your products content will go here -->
-        <div class="content-placeholder">
-          <h2>Products Content Coming Soon</h2>
-          <p>
-            This section will contain wellness products, books, and resources
-            for purchase.
-          </p>
+        <div class="section-header">
+          <span class="section-badge">Recommended Categories</span>
+          <h2 class="section-title">Resources Our Team Recommends</h2>
+        </div>
+        <div class="services-preview-grid">
+          <div class="service-preview-card">
+            <div class="service-icon">
+              <i class="fas fa-book-open" aria-hidden="true"></i>
+            </div>
+            <h3>Self-Help &amp; Psychology Books</h3>
+            <p>
+              Titles on CBT, mindfulness, and personal growth curated by our
+              counsellors and coaches to support the work you do in sessions.
+            </p>
+          </div>
+          <div class="service-preview-card">
+            <div class="service-icon">
+              <i class="fas fa-pen-fancy" aria-hidden="true"></i>
+            </div>
+            <h3>Guided Journals</h3>
+            <p>
+              Structured journals for reflection, gratitude, and tracking
+              mood or progress between sessions.
+            </p>
+          </div>
+          <div class="service-preview-card">
+            <div class="service-icon">
+              <i class="fas fa-spa" aria-hidden="true"></i>
+            </div>
+            <h3>Mindfulness &amp; Meditation Aids</h3>
+            <p>
+              Meditation cushions, singing bowls, and recommended apps to
+              support a daily mindfulness practice at home.
+            </p>
+          </div>
+          <div class="service-preview-card">
+            <div class="service-icon">
+              <i class="fas fa-moon" aria-hidden="true"></i>
+            </div>
+            <h3>Sleep &amp; Relaxation Aids</h3>
+            <p>
+              Simple tools &mdash; from weighted blankets to calming
+              soundscapes &mdash; that our team recommends for better rest.
+            </p>
+          </div>
+        </div>
+
+        <div class="cta-section">
+          <div class="cta-content">
+            <h2>Want Personalized Recommendations?</h2>
+            <p>
+              These resources work best alongside professional support.
+              Speak with one of our professionals for suggestions tailored
+              to your goals.
+            </p>
+            <div class="cta-buttons">
+              <a href="contact.html" class="btn btn-primary btn-large">
+                <i class="fas fa-comment-dots" aria-hidden="true"></i>
+                Get in Touch
+              </a>
+            </div>
+          </div>
         </div>
       </div>
     </section>

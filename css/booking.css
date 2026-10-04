@@ -1,0 +1,9 @@
+.bk-slots{display:flex;flex-wrap:wrap;gap:.5rem}
+.bk-slots button{padding:.5rem .9rem;border:1px solid #cbd5d1;border-radius:8px;background:#fff;cursor:pointer;font:inherit}
+.bk-slots button[aria-checked="true"]{background:#2f6f5e;color:#fff;border-color:#2f6f5e}
+.bk-slots button:focus-visible{outline:2px solid #2f6f5e;outline-offset:2px}
+.bk-hint{margin:0;color:#667}
+.bk-price{margin:.4rem 0 0;font-weight:600}
+.bk-consent{display:flex;gap:.5rem;align-items:flex-start;margin:1rem 0;font-size:.9rem}
+.bk-error{color:#b3261e;min-height:1.2em;margin:.25rem 0 .75rem}
+.bk-label{display:block;font-weight:600;margin-bottom:.4rem}

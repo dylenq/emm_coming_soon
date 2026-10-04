@@ -1,0 +1,43 @@
+# CasaOS / Docker Compose deployment for the static EMM website.
+# On the server (from the project dir):
+#   docker compose -f docker-compose.casaos.yml up -d --build
+# The container then appears in the CasaOS dashboard.
+name: emm-website
+services:
+  emm-website:
+    build: .
+    image: emm-website:latest
+    container_name: emm-website
+    restart: unless-stopped
+    ports:
+      - "8091:80"
+    x-casaos:
+      architectures: [amd64, arm64]
+      main: emm-website
+      title:
+        en_us: Every Mind Matters
+      tagline:
+        en_us: EMM static website
+      category: Web
+      port_map: "8091"
+      scheme: http
+      index: /
+
+  # Online booking API. Not started by default: create booking-api/.env (see
+  # booking-api/.env.example) and booking-api/google-sa.json on the server, then run
+  #   docker compose -f docker-compose.casaos.yml --profile booking up -d --build
+  booking-api:
+    profiles: ["booking"]
+    build: ./booking-api
+    image: emm-booking-api:latest
+    container_name: emm-booking-api
+    restart: unless-stopped
+    env_file: ./booking-api/.env
+    ports:
+      - "8092:3000"
+    volumes:
+      - booking-data:/data
+      - ./booking-api/google-sa.json:/run/secrets/google-sa.json:ro
+
+volumes:
+  booking-data:

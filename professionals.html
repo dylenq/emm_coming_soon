@@ -5,11 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Our Professionals - Every Mind Matters</title>
     <meta name="description" content="Meet the Every Mind Matters team — licensed therapists, coaches, and certified wellness professionals supporting your journey." />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <meta name="theme-color" content="#ec4899" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Every Mind Matters" />
+    <meta property="og:title" content="Our Professionals - Every Mind Matters" />
+    <meta property="og:description" content="Meet the Every Mind Matters team — licensed therapists, coaches, and certified wellness professionals supporting your journey." />
+    <meta name="twitter:card" content="summary" />
     <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin />
-        <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
     <link rel="stylesheet" href="css/styles.min.css" />
+    <link rel="stylesheet" href="css/booking.css" />
+    <meta name="emm-api-base" content="https://emm-api.yeetserver.org" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
@@ -17,12 +23,9 @@
       onload="this.media='all'"
     />
     <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" /></noscript>
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
   </head>
   <body>
+    <a class="skip-link" href="#main-content">Skip to main content</a>
     <!-- Navigation -->
     <nav class="navbar">
       <div class="nav-container">
@@ -83,7 +86,7 @@
             </div>
           </div>
           <a href="corporates.html" class="nav-link">Corporates</a>
-          <a href="journal.html" class="nav-link">Journal</a>
+          <a href="blog.html" class="nav-link">Blog</a>
           <a href="products.html" class="nav-link">Wellness Products</a>
           <a href="contact.html" class="nav-link">Contact</a>
         </div>
@@ -96,7 +99,7 @@
     </nav>
 
     <!-- Page Header -->
-    <section class="page-header">
+    <section id="main-content" class="page-header">
       <div class="container">
         <div class="page-header-content">
           <span class="page-badge">Our Team</span>
@@ -115,7 +118,7 @@
         <div class="professionals-grid">
           <div class="professional-card">
             <div class="professional-image">
-              <img src="images/team/Don_photo.jpg" alt="Don de Silva"  loading="lazy" width="600" height="700"/>
+              <img src="images/team/Nimethri_photo.jpg" alt="Nimethri"  loading="lazy" width="600" height="700"/>
               <div class="professional-overlay">
                 <div class="social-links">
                   <a href="#" class="social-link"
@@ -126,43 +129,48 @@
                   ></a>
                 </div>
               </div>
+              
             </div>
             <div class="professional-info">
-              <h3>Don de Silva</h3>
-              <p class="title">Buddhist Counsellor & MBSR Trainer</p>
+              <h3>Nimethri Gunasekara</h3>
+              <p class="title">
+                Psychologist (Clinical & Counselling) & Mindfulness Master Trainer
+              </p>
               <p class="description">
-                Sri Lankan environmentalist, diplomat, and Buddhist counsellor
-                dedicated to integrating Buddha Dhamma into personal and
-                professional growth.
+                Integrates modern psychological practice with early Buddhist
+                teachings to deliver holistic mental health support across
+                clinical settings, academia, and corporate environments.
               </p>
               <div class="specialties">
-                <span class="specialty-tag">Buddhist Counselling</span>
-                <span class="specialty-tag">MBSR</span>
-                <span class="specialty-tag">Mindfulness</span>
-                <span class="specialty-tag">Sustainability Leadership</span>
+                <span class="specialty-tag">Clinical Psychology</span>
+                <span class="specialty-tag">Counselling</span>
+                <span class="specialty-tag">Mindfulness Training</span>
+                <span class="specialty-tag">Buddhist Psychology</span>
               </div>
-              <div class="professional-details hover-details">
-                <p>
-                  <strong>Background:</strong> Former Director at UNEP and senior
-                  leader at IIED, instrumental in global sustainability and
-                  climate change initiatives.
+              <div class="professional-details hover-details">                <p>
+                  <strong>Background:</strong> Advanced training in clinical and
+                  counselling psychology paired with recognised expertise as a
+                  Mindfulness Master Trainer and Buddhist scholar.
                 </p>
                 <p>
-                  <strong>Contributions:</strong> Helped establish Sri Lanka's
-                  Central Environmental Authority and SACEP.
+                  <strong>Academic Leadership:</strong> Lectures at state and
+                  private universities in Sri Lanka, mentoring future mental
+                  health professionals.
                 </p>
                 <p>
-                  <strong>Current Focus:</strong> University mentor, Buddhist
-                  counsellor, and certified MBSR trainer.
+                  <strong>Corporate Impact:</strong> Facilitates mindfulness,
+                  psychological awareness, and workplace wellbeing programs for
+                  leading organisations.
                 </p>
                 <p>
-                  <strong>Author:</strong> "How Buddhism Empowers Personal and
-                  Social Change."
+                  <strong>Community Work:</strong> Founder of the Mental Health
+                  Championship Programme, empowering children and youth with
+                  resilience, emotional intelligence, and mindfulness skills.
                 </p>
               </div>
               <button
                 class="btn btn-primary"
-                onclick="openBookingModal('buddhist-counselling')"
+                onclick="openBookingModal('nimethri')"
               >
                 <i class="fas fa-calendar-plus" aria-hidden="true"></i>
                 Book Session
@@ -232,7 +240,7 @@
               </div>
               <button
                 class="btn btn-primary"
-                onclick="openBookingModal('psychiatry')"
+                onclick="openBookingModal('kavinda')"
               >
                 <i class="fas fa-calendar-plus" aria-hidden="true"></i>
                 Book Session
@@ -242,7 +250,7 @@
 
           <div class="professional-card">
             <div class="professional-image">
-              <img src="images/team/Dianka_photo.jpg" alt="Dianaka"  loading="lazy" width="600" height="700"/>
+              <img src="images/team/Don_photo.jpg" alt="Don de Silva"  loading="lazy" width="600" height="700"/>
               <div class="professional-overlay">
                 <div class="social-links">
                   <a href="#" class="social-link"
@@ -255,96 +263,41 @@
               </div>
             </div>
             <div class="professional-info">
-              <h3>Dianaka Dharmapriya</h3>
-              <p class="title">Certified Fitness Trainer & Nutrition Coach</p>
+              <h3>Don de Silva</h3>
+              <p class="title">Buddhist Counsellor & MBSR Trainer</p>
               <p class="description">
-                Delivers personalized fitness and nutrition programs that empower
-                clients to build strength, improve health, and sustain lasting
-                wellbeing.
+                Sri Lankan environmentalist, diplomat, and Buddhist counsellor
+                dedicated to integrating Buddha Dhamma into personal and
+                professional growth.
               </p>
               <div class="specialties">
-                <span class="specialty-tag">Strength Training</span>
-                <span class="specialty-tag">Personalized Coaching</span>
-                <span class="specialty-tag">Nutrition Planning</span>
-                <span class="specialty-tag">Holistic Wellness</span>
+                <span class="specialty-tag">Buddhist Counselling</span>
+                <span class="specialty-tag">MBSR</span>
+                <span class="specialty-tag">Mindfulness</span>
+                <span class="specialty-tag">Sustainability Leadership</span>
               </div>
               <div class="professional-details hover-details">
                 <p>
-                  <strong>Approach:</strong> Tailors every fitness plan to
-                  individual goals, pairing smart workouts with expert meal
-                  guidance for sustained progress.
+                  <strong>Background:</strong> Former Director at UNEP and senior
+                  leader at IIED, instrumental in global sustainability and
+                  climate change initiatives.
                 </p>
                 <p>
-                  <strong>Results:</strong> Known for helping clients achieve
-                  measurable improvements in strength, vitality, and overall
-                  wellbeing.
+                  <strong>Contributions:</strong> Helped establish Sri Lanka's
+                  Central Environmental Authority and SACEP.
+                </p>
+                <p>
+                  <strong>Current Focus:</strong> University mentor, Buddhist
+                  counsellor, and certified MBSR trainer.
+                </p>
+                <p>
+                  <strong>Author:</strong> "How Buddhism Empowers Personal and
+                  Social Change."
                 </p>
               </div>
               <button
                 class="btn btn-primary"
-                onclick="openBookingModal('fitness-training')"
-              >
-                <i class="fas fa-calendar-plus" aria-hidden="true"></i>
-                Book Session
-              </button>
-            </div>
-          </div>
-
-          <div class="professional-card">
-            <div class="professional-image">
-              <img src="images/team/Nimethri_photo.jpg" alt="Nimethri"  loading="lazy" width="600" height="700"/>
-              <div class="professional-overlay">
-                <div class="social-links">
-                  <a href="#" class="social-link"
-                     aria-label="LinkedIn"><i class="fab fa-linkedin" aria-hidden="true"></i
-                  ></a>
-                  <a href="#" class="social-link"
-                     aria-label="Email this professional"><i class="fas fa-envelope" aria-hidden="true"></i
-                  ></a>
-                </div>
-              </div>
-              
-            </div>
-            <div class="professional-info">
-              <h3>Nimethri Gunasekara</h3>
-              <p class="title">
-                Psychologist (Clinical & Counselling) & Mindfulness Master Trainer
-              </p>
-              <p class="description">
-                Integrates modern psychological practice with early Buddhist
-                teachings to deliver holistic mental health support across
-                clinical settings, academia, and corporate environments.
-              </p>
-              <div class="specialties">
-                <span class="specialty-tag">Clinical Psychology</span>
-                <span class="specialty-tag">Counselling</span>
-                <span class="specialty-tag">Mindfulness Training</span>
-                <span class="specialty-tag">Buddhist Psychology</span>
-              </div>
-              <div class="professional-details hover-details">                <p>
-                  <strong>Background:</strong> Advanced training in clinical and
-                  counselling psychology paired with recognised expertise as a
-                  Mindfulness Master Trainer and Buddhist scholar.
-                </p>
-                <p>
-                  <strong>Academic Leadership:</strong> Lectures at state and
-                  private universities in Sri Lanka, mentoring future mental
-                  health professionals.
-                </p>
-                <p>
-                  <strong>Corporate Impact:</strong> Facilitates mindfulness,
-                  psychological awareness, and workplace wellbeing programs for
-                  leading organisations.
-                </p>
-                <p>
-                  <strong>Community Work:</strong> Founder of the Mental Health
-                  Championship Programme, empowering children and youth with
-                  resilience, emotional intelligence, and mindfulness skills.
-                </p>
-              </div>
-              <button
-                class="btn btn-primary"
-                onclick="openBookingModal('mindfulness-training')"
+                onclick="openBookingModal('don')"
               >
                 <i class="fas fa-calendar-plus" aria-hidden="true"></i>
                 Book Session
@@ -405,13 +358,63 @@
               </div>
               <button
                 class="btn btn-primary"
-                onclick="openBookingModal('mindfulness-coaching')"
+                onclick="openBookingModal('ravindi')"
               >
                 <i class="fas fa-calendar-plus" aria-hidden="true"></i>
                 Book Session
               </button>
             </div>
           </div>
+          <div class="professional-card">
+            <div class="professional-image">
+              <img src="images/team/Dianka_photo.jpg" alt="Dianaka"  loading="lazy" width="600" height="700"/>
+              <div class="professional-overlay">
+                <div class="social-links">
+                  <a href="#" class="social-link"
+                     aria-label="LinkedIn"><i class="fab fa-linkedin" aria-hidden="true"></i
+                  ></a>
+                  <a href="#" class="social-link"
+                     aria-label="Email this professional"><i class="fas fa-envelope" aria-hidden="true"></i
+                  ></a>
+                </div>
+              </div>
+            </div>
+            <div class="professional-info">
+              <h3>Dianaka Dharmapriya</h3>
+              <p class="title">Certified Fitness Trainer & Nutrition Coach</p>
+              <p class="description">
+                Delivers personalized fitness and nutrition programs that empower
+                clients to build strength, improve health, and sustain lasting
+                wellbeing.
+              </p>
+              <div class="specialties">
+                <span class="specialty-tag">Strength Training</span>
+                <span class="specialty-tag">Personalized Coaching</span>
+                <span class="specialty-tag">Nutrition Planning</span>
+                <span class="specialty-tag">Holistic Wellness</span>
+              </div>
+              <div class="professional-details hover-details">
+                <p>
+                  <strong>Approach:</strong> Tailors every fitness plan to
+                  individual goals, pairing smart workouts with expert meal
+                  guidance for sustained progress.
+                </p>
+                <p>
+                  <strong>Results:</strong> Known for helping clients achieve
+                  measurable improvements in strength, vitality, and overall
+                  wellbeing.
+                </p>
+              </div>
+              <button
+                class="btn btn-primary"
+                onclick="openBookingModal('dianaka')"
+              >
+                <i class="fas fa-calendar-plus" aria-hidden="true"></i>
+                Book Session
+              </button>
+            </div>
+          </div>
+
         </div>
       </div>
     </section>
@@ -446,70 +449,53 @@
           <h2 id="modal-title">Book a Session</h2>
           <span class="close" onclick="closeModal()">&times;</span>
         </div>
-        <form id="booking-form">
-          <div class="form-step active" id="step-1">
-            <h3>Personal Information</h3>
-            <div class="form-row">
-              <div class="form-group">
-                <label for="client-name">Full Name *</label>
-                <input
-                  type="text"
-                  id="client-name"
-                  name="client-name"
-                  placeholder="Your full name"
-                  required
-                />
-              </div>
-              <div class="form-group">
-                <label for="client-email">Email Address *</label>
-                <input
-                  type="email"
-                  id="client-email"
-                  name="client-email"
-                  placeholder="your.email@example.com"
-                  required
-                />
-              </div>
+        <form id="booking-form-v2" novalidate>
+          <div class="form-group">
+            <label for="bk-type">Session type *</label>
+            <select id="bk-type" required></select>
+            <p class="bk-price" id="bk-price" aria-live="polite"></p>
+          </div>
+          <div class="form-group">
+            <label for="bk-date">Date *</label>
+            <input type="date" id="bk-date" required />
+          </div>
+          <div class="form-group">
+            <span class="bk-label" id="bk-slots-label">Time (Sri Lanka time) *</span>
+            <div id="bk-slots" class="bk-slots" role="radiogroup" aria-labelledby="bk-slots-label">
+              <p class="bk-hint">Choose a date to see available times.</p>
             </div>
-            <div class="form-row">
-              <div class="form-group">
-                <label for="client-phone">Phone Number *</label>
-                <input
-                  type="tel"
-                  id="client-phone"
-                  name="client-phone"
-                  placeholder="+1 (555) 123-4567"
-                  required
-                />
-              </div>
-              <div class="form-group">
-                <label for="client-age">Age Range</label>
-                <select id="client-age" name="client-age">
-                  <option value="">Select age range</option>
-                  <option value="18-25">18-25</option>
-                  <option value="26-35">26-35</option>
-                  <option value="36-45">36-45</option>
-                  <option value="46-55">46-55</option>
-                  <option value="56-65">56-65</option>
-                  <option value="65+">65+</option>
-                </select>
-              </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="client-name">Full Name *</label>
+              <input type="text" id="client-name" autocomplete="name" required />
             </div>
             <div class="form-group">
-              <label for="session-notes">How can we help you today?</label>
-              <textarea
-                id="session-notes"
-                name="session-notes"
-                rows="3"
-                placeholder="Brief description of what you'd like to work on..."
-              ></textarea>
+              <label for="client-email">Email Address *</label>
+              <input type="email" id="client-email" autocomplete="email" required />
             </div>
-            <button type="submit" class="btn btn-primary btn-large">
-              <i class="fas fa-check" aria-hidden="true"></i>
-              Submit Request
-            </button>
           </div>
+          <div class="form-group">
+            <label for="client-phone">Phone Number *</label>
+            <input type="tel" id="client-phone" placeholder="+94 71 234 5678" autocomplete="tel" required />
+          </div>
+          <div class="form-group">
+            <label for="session-notes">How can we help you today?</label>
+            <textarea id="session-notes" rows="3" placeholder="Brief description of what you'd like to work on..."></textarea>
+          </div>
+          <label class="bk-consent">
+            <input type="checkbox" id="bk-consent" required />
+            I agree to the <a href="terms.html" target="_blank" rel="noopener">terms</a> and
+            <a href="privacy.html" target="_blank" rel="noopener">privacy policy</a>, and understand
+            payment is taken securely by PayHere.
+          </label>
+          <p class="bk-error" id="bk-error" role="alert"></p>
+          <button type="submit" class="btn btn-primary btn-large" id="bk-submit">
+            <i class="fas fa-lock" aria-hidden="true"></i>
+            Continue to payment
+          </button>
         </form>
+        <form id="bk-payhere" method="post" hidden></form>
       </div>
     </div>
 
@@ -586,5 +572,6 @@
     </footer>
 
     <script src="js/script.min.js" defer></script>
+    <script src="js/booking.js" defer></script>
   </body>
 </html>

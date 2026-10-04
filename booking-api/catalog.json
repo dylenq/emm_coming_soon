@@ -1,0 +1,22 @@
+{
+  "_note": "PLACEHOLDER prices, hours and calendar IDs. Replace with real values before going live.",
+  "professionals": {
+    "nimethri": { "name": "Nimethri Gunasekara", "calendarId": "dylenquyn2003@gmail.com",
+      "hours": { "1": ["09:00","17:00"], "2": ["09:00","17:00"], "3": ["09:00","17:00"], "4": ["09:00","17:00"], "5": ["09:00","17:00"] },
+      "bufferMin": 15, "minNoticeHours": 12,
+      "sessions": { "mindfulness-60": { "label": "Online session (60 min)", "minutes": 60, "priceLKR": 4000 } } },
+    "kavinda": { "name": "Dr. Kavinda De Silva", "calendarId": "REPLACE@group.calendar.google.com",
+      "hours": { "1": ["09:00","17:00"] }, "bufferMin": 15, "minNoticeHours": 24,
+      "sessions": { "consult-60": { "label": "Consultation (60 min)", "minutes": 60, "priceLKR": 4000 } } },
+    "don": { "name": "Don de Silva", "calendarId": "REPLACE@group.calendar.google.com",
+      "hours": { "1": ["09:00","17:00"] }, "bufferMin": 15, "minNoticeHours": 24,
+      "sessions": { "counselling-60": { "label": "Counselling (60 min)", "minutes": 60, "priceLKR": 4000 } } },
+    "ravindi": { "name": "Ravindi Peiris", "calendarId": "REPLACE@group.calendar.google.com",
+      "hours": { "1": ["09:00","17:00"], "2": ["09:00","17:00"], "3": ["09:00","17:00"], "4": ["09:00","17:00"], "5": ["09:00","17:00"] },
+      "bufferMin": 15, "minNoticeHours": 12,
+      "sessions": { "mindfulness-60": { "label": "Mindfulness coaching (60 min)", "minutes": 60, "priceLKR": 4000 } } },
+    "dianaka": { "name": "Dianaka Dharmapriya", "calendarId": "REPLACE@group.calendar.google.com",
+      "hours": { "1": ["09:00","17:00"] }, "bufferMin": 15, "minNoticeHours": 24,
+      "sessions": { "fitness-60": { "label": "Fitness training (60 min)", "minutes": 60, "priceLKR": 4000 } } }
+  }
+}

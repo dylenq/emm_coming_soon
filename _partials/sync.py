@@ -35,14 +35,14 @@ ACTIVE_MAP = {
     "service-social.html": "SERVICES",
     "service-corporate.html": "SERVICES",
     "corporates.html": "CORPORATES",
-    "journal.html": "JOURNAL",
-    "journal-instructions.html": "JOURNAL",
+    "blog.html": "BLOG",
+    "products.html": "PRODUCTS",
     "contact.html": "CONTACT",
     # Stub / legal / misc pages: no active state.
 }
 
 PLACEHOLDERS = ["HOME", "ABOUT", "PROFESSIONALS", "SERVICES",
-                "CORPORATES", "JOURNAL", "CONTACT"]
+                "CORPORATES", "BLOG", "PRODUCTS", "CONTACT"]
 
 
 def render_nav(filename):

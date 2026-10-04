@@ -44,16 +44,27 @@ Scope: code quality, performance, accessibility & mobile. Originally audited 24 
 ### Round 3 — INTENTIONALLY SKIPPED
 - **Merge duplicate `@media (max-width: 768px)` blocks** — turned out there are **three** such blocks (not two), and one is `@media (max-width: 768px)` (applies to print too) while the others are `@media screen and (max-width: 768px)` (screen only). They are not semantically equivalent. Merging would also change CSS cascade order and could shift visual behavior. Left alone — needs a manual pass with eyes on the page.
 
+### Round 4 — July 2026 polish pass ✓ APPLIED
+- **Deleted `images/partners/partnerships.png`** — 2.3 MB, referenced by no page.
+- **Deleted `images/services/Corporate Programs illustration.jpeg`** — referenced by no page.
+- **Consolidated the 9 byte-identical service illustrations** into one shared `images/services/service-illustration.jpeg`; all 9 service pages updated (≈0.9 MB less to download when browsing multiple services; one cache hit instead of nine).
+- **Partner logos downscaled** from ~360 px tall to 120 px (2× their 60 px display size): 1.7 MB → 440 KB.
+- **Removed the Google Fonts stylesheet + its two preconnects** from all 25 pages — Inter and Playfair Display were loaded but never referenced; the CSS uses a Roboto/system stack, so this is zero visual change.
+- **Fixed CSS bug**: `.professional-image { height: (280px, 35vw, 400px) }` was missing `clamp()` — the declaration was invalid and silently ignored.
+- **Skip-to-main-content link** added to all 25 pages (`.skip-link` styles in styles.css; first section after nav now has `id="main-content"`).
+- **`<meta name="theme-color">` (#ec4899), Open Graph (`og:type/site_name/title/description`) and `twitter:card` meta** on all 25 pages. `og:url`/`og:image` still need the production domain — see below.
+- **Pruned 23 genuinely unused CSS variables** (rose palette, most of the pink palette, unused container/radius sizes). Kept `--primary-100/200` — they're referenced from script.js inline styles.
+- **`robots.txt`** added (allow all, disallow `/_partials/`); **`.vercelignore`** added so `_partials/`, `AUDIT.md`, etc. aren't deployed.
+- **Nav drift fixed**: "Wellness Products" had been added to 24 pages but not `_partials/nav.html`, and `contact.html` still had the old nav. Partial + sync.py updated (new `{{PRODUCTS}}` placeholder), sync re-run — all 25 navs identical again.
+- **Re-minified** styles.min.css (39.0 KB) and script.min.js.
+- **Verified**: 0 broken links/anchors, 1 nav variant, 1 footer variant, OG tags exactly once per page, no undefined CSS variables, all 25 pages parse.
+
 ---
 
 ## STILL OPEN — your decisions
 
-### 1. The 10 illustration JPEGs are byte-identical
-All `* illustration.jpeg` files share the same MD5 hash. Pick one path:
-- **Option A**: supply 10 actually-distinct illustrations (one per service) and drop them in as replacements with the same filenames — no code changes needed.
-- **Option B**: consolidate to one shared file (e.g. `service-illustration.jpeg`) and update the 10 service pages to reference it. Saves ~900 KB total download for any visitor who browses multiple service pages.
-
-Either way, also exporting to **WebP** would shave another 30–50 % off the file size with no visible quality loss.
+### 1. Production domain needed for final SEO polish
+`sitemap.xml`, `og:url`, `og:image`, and `<link rel="canonical">` all require the site's public URL. Once the domain is settled, these are a quick one-pass addition.
 
 ### 2. Nine stub "Content Coming Soon" pages
 `privacy`, `terms`, `cookies`, `faq`, `gallery`, `products`, `careers`, `assessments`, and `contact` all show a `content-placeholder` block. Pick a path:
@@ -61,12 +72,9 @@ Either way, also exporting to **WebP** would shave another 30–50 % off the fil
 - **Option B**: temporarily hide them from the nav/footer until ready. I can do this in one pass by editing `_partials/nav.html` and `_partials/footer.html`, then re-running `python3 _partials/sync.py`.
 
 ### 3. P2 / nice-to-have items left for later
-- "Skip to main content" link for keyboard users.
-- `<meta name="theme-color">` for mobile browser chrome.
-- Open Graph and Twitter Card meta tags for shareable link previews.
-- `sitemap.xml` and `robots.txt`.
-- Team photo re-export at lower file size or WebP.
-- Prune unused pink/rose palette variables from `styles.css`.
+- Team photo re-export at lower file size or WebP (currently 60–96 KB each — modest win).
+- WebP export of `service-illustration.jpeg` (~30–50 % smaller).
+- ~~Skip link, theme-color, OG/Twitter meta, robots.txt, unused CSS variables~~ — done in Round 4.
 
 ---
 
