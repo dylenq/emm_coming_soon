@@ -1,5 +1,9 @@
-# CasaOS / Docker Compose deployment for the static EMM website.
-# On the server (from the project dir):
+# CasaOS / Docker Compose deployment: one container serves the EMM website and
+# the booking API (/api/*) on the same origin.
+# Before the first start, create on the server:
+#   booking-api/.env            (see booking-api/.env.example)
+#   booking-api/google-sa.json  (Google service account key)
+# Then, from the project dir:
 #   docker compose -f docker-compose.casaos.yml up -d --build
 # The container then appears in the CasaOS dashboard.
 name: emm-website
@@ -9,35 +13,26 @@ services:
     image: emm-website:latest
     container_name: emm-website
     restart: unless-stopped
+    env_file: ./booking-api/.env
     ports:
-      - "8091:80"
+      - "8091:3000"
+      # Transitional: the old emm-api.yeetserver.org proxy target. Keeps PayHere notify
+      # callbacks for bookings started before the merge working; remove once retired.
+      - "8092:3000"
+    volumes:
+      - booking-data:/data
+      - ./booking-api/google-sa.json:/run/secrets/google-sa.json:ro
     x-casaos:
       architectures: [amd64, arm64]
       main: emm-website
       title:
         en_us: Every Mind Matters
       tagline:
-        en_us: EMM static website
+        en_us: EMM website and booking API
       category: Web
       port_map: "8091"
       scheme: http
       index: /
-
-  # Online booking API. Not started by default: create booking-api/.env (see
-  # booking-api/.env.example) and booking-api/google-sa.json on the server, then run
-  #   docker compose -f docker-compose.casaos.yml --profile booking up -d --build
-  booking-api:
-    profiles: ["booking"]
-    build: ./booking-api
-    image: emm-booking-api:latest
-    container_name: emm-booking-api
-    restart: unless-stopped
-    env_file: ./booking-api/.env
-    ports:
-      - "8092:3000"
-    volumes:
-      - booking-data:/data
-      - ./booking-api/google-sa.json:/run/secrets/google-sa.json:ro
 
 volumes:
   booking-data:

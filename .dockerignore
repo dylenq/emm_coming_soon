@@ -4,4 +4,7 @@
 _backup_pre_optimization
 graphify-out
 node_modules
-booking-api/
+booking-api/node_modules
+booking-api/.env
+booking-api/google-sa.json
+booking-api/*.db*

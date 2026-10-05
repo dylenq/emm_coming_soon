@@ -147,4 +147,7 @@ app.get('/api/bookings/:id', (req, res) => {
   res.json({ status: bk.status, start: bk.start, meetLink: bk.meet_link });
 });
 
+// In the Docker image the static website is served from the same container/origin.
+if (env.STATIC_DIR) app.use(express.static(env.STATIC_DIR, { maxAge: '1h' }));
+
 app.listen(env.PORT || 3000, () => console.log('booking-api listening'));

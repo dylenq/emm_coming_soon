@@ -1,7 +1,6 @@
 // Polls the booking API until the PayHere notify callback has confirmed the booking.
 ;(() => {
-  const local = ["localhost", "127.0.0.1"].includes(location.hostname)
-  const API = local ? "http://localhost:8092" : (document.querySelector('meta[name="emm-api-base"]')?.content.replace(/\/$/, "") ?? "")
+  const API = "" // site and API share an origin (same container)
   const id = new URLSearchParams(location.search).get("id")
   const h1 = document.querySelector("h1"), msg = document.getElementById("bk-msg")
   const show = (t, m) => { h1.textContent = t; msg.textContent = m }

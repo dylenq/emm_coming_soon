@@ -1,21 +1,26 @@
-FROM nginx:alpine
+# Single image: the Express booking API (booking-api/) also serves the static website.
+FROM node:24-alpine
+WORKDIR /app
+COPY booking-api/package.json booking-api/package-lock.json ./
+RUN npm ci --omit=dev
+COPY booking-api/ ./
 
-COPY . /usr/share/nginx/html
+COPY . /app/public
+# Keep the API source and deploy-time files out of the served site
+RUN rm -rf /app/public/booking-api \
+    /app/public/_partials \
+    /app/public/_backup_pre_optimization \
+    /app/public/AUDIT.md \
+    /app/public/Dockerfile \
+    /app/public/docker-compose*.yml \
+    /app/public/.dockerignore \
+    /app/public/.gitignore \
+    /app/public/vercel.json \
+    /app/public/.vercelignore \
+    && find /app/public -type d -exec chmod 755 {} \; \
+    && find /app/public -type f -exec chmod 644 {} \;
 
-# Keep deploy-time exclusions out of the served image too
-RUN rm -rf /usr/share/nginx/html/_partials \
-    /usr/share/nginx/html/_backup_pre_optimization \
-    /usr/share/nginx/html/.git \
-    /usr/share/nginx/html/.vscode \
-    /usr/share/nginx/html/AUDIT.md \
-    /usr/share/nginx/html/Dockerfile \
-    /usr/share/nginx/html/docker-compose.yml \
-    /usr/share/nginx/html/.dockerignore
-
-# Some source files have shown up with owner-only (600) permissions, which the
-# nginx worker process can't read, causing intermittent 403s. Normalize
-# regardless of what the source checkout looks like.
-RUN find /usr/share/nginx/html -type d -exec chmod 755 {} \; \
-    && find /usr/share/nginx/html -type f -exec chmod 644 {} \;
-
-EXPOSE 80
+ENV STATIC_DIR=/app/public PORT=3000
+VOLUME /data
+EXPOSE 3000
+CMD ["node", "server.js"]

@@ -1,7 +1,6 @@
 // Online booking: slots from Google Calendar, payment via PayHere (see booking-api/).
 ;(() => {
-  const local = ["localhost", "127.0.0.1"].includes(location.hostname)
-  const API = local ? "http://localhost:8092" : (document.querySelector('meta[name="emm-api-base"]')?.content.replace(/\/$/, "") ?? "")
+  const API = "" // site and API share an origin (same container)
   const $ = (id) => document.getElementById(id)
   const form = $("booking-form-v2")
   if (!form) return

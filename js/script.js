@@ -529,11 +529,7 @@ async function handleContactFormSubmit(e) {
   if (errorEl) errorEl.textContent = ""
   const data = Object.fromEntries(new FormData(form))
 
-  // Same API base detection as js/booking.js
-  const local = ["localhost", "127.0.0.1"].includes(location.hostname)
-  const api = local
-    ? "http://localhost:8092"
-    : (document.querySelector('meta[name="emm-api-base"]')?.content.replace(/\/$/, "") ?? "")
+  const api = "" // site and API share an origin (same container)
 
   // Show loading state
   const submitBtn = form.querySelector('button[type="submit"]')
