@@ -1,0 +1,6 @@
+_partials/
+_backup_pre_optimization/
+AUDIT.md
+.vscode/
+booking-api/
+graphify-out/
