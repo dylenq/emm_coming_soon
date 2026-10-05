@@ -6,3 +6,4 @@ booking-api/.env
 booking-api/google-sa.json
 booking-api/node_modules/
 booking-api/*.db*
+graphify-out/
